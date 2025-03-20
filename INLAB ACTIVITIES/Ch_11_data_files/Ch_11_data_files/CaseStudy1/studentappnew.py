@@ -3,7 +3,6 @@ File: studentapp.py
 The application for editing and analyzing student scores.
 """
 
-# studentapp.py
 from breezypythongui import EasyFrame
 from student import Student
 import matplotlib.pyplot as plt
@@ -11,19 +10,18 @@ import matplotlib.pyplot as plt
 class StudentApp(EasyFrame):
     def __init__(self):
         EasyFrame.__init__(self, title="Student Score Manager")
+        self.addLabel("title", "Student Score Manager", row=0, column=0, columnspan=2)
 
-        # Adding labels and text fields
-        self.addLabel(text="Student Score Manager", row=0, column=0, columnspan=2)
+        # Input fields for student name and scores
+        self.addLabel("nameLabel", "Student Name:", row=1, column=0)
+        self.nameField = self.addTextField("", row=1, column=1)
 
-        self.addLabel(text="Student Name:", row=1, column=0)
-        self.nameField = self.addTextField(text="", row=1, column=1)
+        self.addLabel("scoreLabel", "Scores (comma-separated):", row=2, column=0)
+        self.scoreField = self.addTextField("", row=2, column=1)
 
-        self.addLabel(text="Scores (comma-separated):", row=2, column=0)
-        self.scoreField = self.addTextField(text="", row=2, column=1)
-
-        # Adding buttons
-        self.addButton(text="Add Student", command=self.addStudent, row=3, column=0)
-        self.addButton(text="Plot Scores", command=self.plotScores, row=3, column=1)
+        # Buttons for actions
+        self.addButton("Add Student", self.addStudent, row=3, column=0)
+        self.addButton("Plot Scores", self.plotScores, row=3, column=1)
 
         self.students = []  # List to hold student objects
 
